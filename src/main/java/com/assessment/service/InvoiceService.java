@@ -1,5 +1,6 @@
 package com.assessment.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -19,7 +20,9 @@ public class InvoiceService {
 
 	// Get all Invoices
 	public List<Invoice> getAllInvoices() {
-		return invoiceRepository.findAll();
+		List<Invoice> invoices = new ArrayList<>();
+		invoiceRepository.findAll().forEach(invoices::add);
+		return invoices;
 	}
 	
 	// Get Invoice by ID

@@ -1,6 +1,7 @@
 package com.assessment.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -59,6 +60,7 @@ public class LineItem {
 	}
 	
 	public BigDecimal getUnitPrice() {
+		unitPrice = unitPrice.setScale(2, RoundingMode.HALF_UP);
 		return unitPrice;
 	}
 
@@ -66,8 +68,9 @@ public class LineItem {
 		this.unitPrice = unitPrice;
 	}
 
-	public Invoice saveAll(Invoice invoice2) {
-		
-		return null;
+	public BigDecimal getLineItemTotal() {
+		BigDecimal longQuantity = new BigDecimal(quantity);
+		BigDecimal lineItemTotal = longQuantity.multiply(unitPrice).setScale(2, RoundingMode.HALF_UP);
+		return lineItemTotal;
 	}
 }

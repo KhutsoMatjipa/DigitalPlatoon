@@ -20,28 +20,42 @@ import com.assessment.service.InvoiceService;
 @RestController
 @RequestMapping("/api")
 public class InvoiceController {
-	
-	/*@Autowired
-	LineItem lineItemService;*/
-	
+
+	/*
+	 * @Autowired LineItem lineItemService;
+	 */
+
 	@Autowired
 	InvoiceService invoiceService;
-	
+
 	@Autowired
 	InvoiceRepository invoiceRepository;
-	
-	@PostMapping(value="/invoice")
+
+	/**
+	 * Save Invoice
+	 */
+	@PostMapping(value = "/invoice")
 	public Invoice addInvoice(@Valid @RequestBody Invoice invoice) {
 		Invoice myInvoice = invoiceService.saveInvoice(invoice);
 		return myInvoice;
-		
-	} 
-	
+
+	}
+
+	/**
+	 * Get all Invoices
+	 * 
+	 * @return Invoice
+	 */
 	@GetMapping("/invoices")
 	public List<Invoice> viewAllInvoice() {
 		return invoiceService.getAllInvoices();
 	}
 
+	/**
+	 * Get a Invoice by ID
+	 * 
+	 * @return Invoice
+	 */
 	@GetMapping("/invoice/{id}")
 	public Optional<Invoice> viewInvoice(@PathVariable("id") final Long id) {
 		return invoiceService.getInvoice(id);

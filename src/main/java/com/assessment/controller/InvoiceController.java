@@ -36,8 +36,8 @@ public class InvoiceController {
 	 */
 	@PostMapping(value = "/invoice")
 	public Invoice addInvoice(@Valid @RequestBody Invoice invoice) {
-		Invoice myInvoice = invoiceService.saveInvoice(invoice);
-		return myInvoice;
+		
+		return invoiceService.saveInvoice(invoice);
 
 	}
 
@@ -55,7 +55,7 @@ public class InvoiceController {
 	 * Get a Invoice by ID
 	 * 
 	 * @return Invoice
-	 */
+	 */ 
 	@GetMapping("/invoice/{id}")
 	public Optional<Invoice> viewInvoice(@PathVariable("id") final Long id) {
 		return invoiceService.getInvoice(id);
